@@ -1,0 +1,104 @@
+/*General Buttons*/
+.button{
+    -fx-background-color: #00A5CF;
+    -fx-padding:10;
+    -fx-text-fill: white;
+    -fx-min-width: 100;
+}
+.button:hover{
+    -fx-background-color: DarkGreen;
+}
+.label{
+    -fx-padding: 10;
+    -fx-min-width: 100;
+    -fx-wrap-text: true;
+}
+/*Choice Box*/
+.choice-box{
+    -fx-background-color: #7AE582;
+    -fx-mark-color: #004E64;
+}
+.choice-box .context-menu {
+    -fx-background-color: #7AE582;
+}
+.choice-box .menu-item:focused {
+    -fx-background-color: #004E64;
+}
+.choice-box .menu-item > .label {
+    -fx-text-fill: black;
+
+}
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
+
+/*Login Page*/
+#loginpage{
+    -fx-background-color: #f5f3ef;
+}
+/*Any cancel/delete button show up as red*/
+#cancel{
+    -fx-background-color: #EB4511;
+}
+#cancel:hover{
+    -fx-background-color: #B02E0C;
+}
+/*Any add/submit show as light green and dark green*/
+#complete{
+    -fx-background-color: #44CF6C;
+}
+#complete:hover{
+    -fx-background-color: DarkGreen;
+}
+
+#textfield{
+    -fx-background-radius: 30;
+}
+
+#navbar{
+    -fx-background-radius: 0;
+    -fx-alignment: center ;
+    -fx-padding:10;
+    -fx-text-fill: white;
+}
+
+#navbar:hover{
+    -fx-background-color: #9FFFCB;
+    -fx-text-fill: #555555;
+}
+
+#selected {
+    -fx-background-color: #9FFFCB;
+    -fx-text-fill: #555555;
+    -fx-background-radius: 0;
+    -fx-alignment: center ;
+    -fx-padding:10;
+}
+
+#borderOnHover:hover{
+
+    -fx-border-style: dashed;
+    -fx-border-color: black;
+    -fx-background-color: grey;
+
+}
+
+#shadeRed{
+    -fx-background-color: rgba(136, 8, 8, 0.1);
+}
+
+#shadeGreen{
+    -fx-background-color: rgba(8, 136, 8, 0.1);
+}
+#colorRed{
+    -fx-text-fill: red;
+}
+#colorGreen{
+    -fx-text-fill: green;
+}
+#colorOrange{
+    -fx-text-fill: #cc6600;
+}
+#colorBlue{
+    -fx-text-fill:blue;
+}

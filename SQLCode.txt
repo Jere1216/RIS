@@ -1,0 +1,50 @@
+CREATE TABLE users ( user_id INT PRIMARY KEY DEFAULT unique_rowid(), email VARCHAR(45) UNIQUE NOT NULL, full_name VARCHAR(45) NOT NULL, username VARCHAR(25) UNIQUE NOT NULL, password VARCHAR(64) NOT NULL, role INT NOT NULL, pfp STRING , enabled BOOL NOT NULL DEFAULT true);
+
+CREATE TABLE roles ( roleID INT PRIMARY KEY, role VARCHAR(25), UNIQUE(roleID, role) );
+
+INSERT INTO roles VALUES ('1', 'Administrator');
+INSERT INTO roles VALUES ('2', 'Receptionist');
+INSERT INTO roles VALUES ('3', 'Technician');
+INSERT INTO roles VALUES ('4', 'Radiologist');
+INSERT INTO roles VALUES ('5', 'Referral Doctor');
+INSERT INTO roles VALUES ('6', 'Biller');
+
+CREATE TABLE appointments ( appt_id INT PRIMARY KEY UNIQUE DEFAULT unique_rowid(), patient_id INT NOT NULL, time VARCHAR(25) NOT NULL, statusCode INT NOT NULL,  viewable INT DEFAULT 1,  UNIQUE(patient_id, time)  );
+
+CREATE TABLE appointmentsOrdersConnector (  apptID INT, orderCodeID INT,  UNIQUE(apptID, orderCodeID)  );
+
+CREATE TABLE docPatientConnector ( referralDocID INT, patientID INT,  UNIQUE(referralDocID, patientID) );
+
+CREATE TABLE patients ( patientID INT PRIMARY KEY DEFAULT unique_rowid(), email VARCHAR(45) NOT NULL, full_name VARCHAR(45) NOT NULL, dob VARCHAR(45) NOT NULL, address VARCHAR(64) NOT NULL, insurance VARCHAR(64) NOT NULL,  UNIQUE(email, full_name) );
+
+CREATE TABLE patientAlerts ( alertID INT PRIMARY KEY DEFAULT unique_rowid(),  alert STRING  UNIQUE NOT NULL  );
+
+CREATE TABLE flags ( alertID INT,  orderID INT,  UNIQUE(alertID, orderID)  );
+
+CREATE TABLE alertsPatientConnector ( patientID INT,  alertID INT,  UNIQUE(patientID, alertID)  );
+
+CREATE TABLE radPatientConnector ( patientID INT UNIQUE,  userID INT,  UNIQUE(patientID, userID)  );
+
+CREATE TABLE statusCode ( statusID INT PRIMARY KEY, status VARCHAR(45) );
+
+CREATE TABLE orderCodes ( orderID INT PRIMARY KEY DEFAULT unique_rowid(), orders VARCHAR(45) UNIQUE,  cost REAL  );
+
+CREATE TABLE patientOrders ( patientID INT , orderCodeID INT NOT NULL , enabled INT DEFAULT 1 );
+
+CREATE TABLE images ( imageID INT PRIMARY KEY DEFAULT unique_rowid(), patientID INT, apptID INT, image BLOB );
+
+CREATE TABLE report( apptID INT UNIQUE,  writtenReport STRING  );
+
+INSERT INTO statusCode VALUES ('0', 'Patient Did Not Show');
+INSERT INTO statusCode VALUES ('1', 'Appointment Scheduled');
+INSERT INTO statusCode VALUES ('2', 'Patient Checked In');
+INSERT INTO statusCode VALUES ('3', 'Patient received by Technician');
+INSERT INTO statusCode VALUES ('4', 'Images Uploaded');
+INSERT INTO statusCode VALUES ('5', 'Radiology Report Uploaded.');
+INSERT INTO statusCode VALUES ('6', 'Referral Doctor Signature Completed.');
+INSERT INTO statusCode VALUES ('7', 'Patient Cancelled');
+INSERT INTO statusCode VALUES ('8', 'Faculty Cancelled');
+
+CREATE TABLE patientPayments( apptID INTEGER,  time TEXT,  patientPayment REAL,  byPatient INTEGER );
+
+INSERT INTO users(email, full_name, username, password, role) VALUES ('god@gmail.com', 'Administrator Dave', 'admin', 'admin', '1');
